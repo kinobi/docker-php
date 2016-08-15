@@ -8,12 +8,17 @@ RUN apt-get update -qq \
     && usermod -u 1000 www-data
 
 RUN pecl install redis && docker-php-ext-enable redis
+
 RUN docker-php-ext-install pdo_mysql mcrypt opcache json
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+COPY php.ini /usr/local/etc/php/
+COPY docker-entrypoint.sh /usr/local/bin/
+
+RUN mkdir /docker-entrypoint-hooks.d
 
 WORKDIR /var/www
 
-COPY php.ini /usr/local/etc/php/
-COPY run.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD /usr/local/bin/run.sh
