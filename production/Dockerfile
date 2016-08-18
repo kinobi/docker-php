@@ -3,7 +3,7 @@ FROM php:7.0.9-fpm
 MAINTAINER Lionel BRIANTO <kinobi@kinobiweb.com>
 
 RUN apt-get update -qq \
-    && apt-get install -y -qq --no-install-recommends zip git wget libmysqlclient-dev libmysqld-dev libmcrypt-dev \
+    && apt-get install -y -qq --no-install-recommends netcat zip git wget libmysqlclient-dev libmysqld-dev libmcrypt-dev \
     && rm -rf /var/lib/apt/lists/* \
     && usermod -u 1000 www-data
 
