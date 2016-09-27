@@ -1,4 +1,4 @@
-FROM php:7.0.10-fpm
+FROM php:7.0.11-fpm
 
 MAINTAINER Lionel BRIANTO <kinobi@kinobiweb.com>
 
@@ -11,7 +11,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
-RUN docker-php-ext-install pdo_mysql mcrypt opcache zip gd
+RUN docker-php-ext-install pdo_mysql mcrypt opcache zip gd mysqli
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
